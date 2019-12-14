@@ -1,0 +1,39 @@
+<!---->
+Exemple ng-content
+<child>Contenu du ngContent</child>
+<br/>
+<br/> Exemple ng-container
+<ng-container *ngIf="true">
+    Pas besoin d'héberger un ngIf dans une balise div inutile qui pollue le DOM ;)
+</ng-container>
+<br/>
+<br/> Premier exemple de ng-template dans le cadre d'un if else
+<ng-container *ngIf="true;then a_content else b_content"></ng-container>
+<br/>
+<br/>
+<ng-template #a_content>
+    Contenu A
+</ng-template>
+<br/>
+<br/>
+<ng-template #b_content>
+    Contenu B
+</ng-template>
+<br/>
+<br/> Second exemple de ng-template (ng-If non obligatoire). Avec $implicit
+<br/>
+<br/>
+<ng-container *ngIf="true" [ngTemplateOutlet]="template1" [ngTemplateOutletContext]="{$implicit: title}">
+</ng-container>
+<ng-template #template1 let-variable>
+    {{variable}} dref
+</ng-template>
+<br/>
+<br/> Troisième exmple de ng-tempalte sans $implicit
+<br/>
+<br/>
+<ng-container *ngIf="true" [ngTemplateOutlet]="template2" [ngTemplateOutletContext]="{bar: title, ph: title+'ph'}">
+</ng-container>
+<ng-template #template2 let-variable="bar" , let-variable2="ph">
+    {{variable}} {{variable2}}
+</ng-template>
